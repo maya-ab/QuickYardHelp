@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "c156b4270aea292b9b335dd463ea17eb-earth-planet-icon-earth-icon-by-vexels.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
