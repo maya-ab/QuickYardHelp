@@ -24,7 +24,7 @@ class RequestLoadingViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
+        roundCorners()
         usersChoice.alpha = 0
         confirmRequestButton.alpha = 0
         confirmRequestButton.isEnabled = false

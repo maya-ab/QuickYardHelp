@@ -26,6 +26,11 @@ class IntroViewController: UIViewController {
     @IBOutlet weak var tryAgainLabel: UILabel!
     
     override func viewDidLoad() {
+         logInButton.layer.cornerRadius = logInButton.frame.size.height / 5
+        
+         signUpOneButton.layer.cornerRadius = signUpOneButton.frame.size.height / 5
+        
+        
         super.viewDidLoad()
 
         setUpElements()

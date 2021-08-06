@@ -86,7 +86,7 @@ class userMapDetails: UIViewController {
     
     @IBAction func requestButtonTapped(_ sender: Any) {
         requestButton.alpha = 0
-        acceptancePending.alpha = 1
+       // acceptancePending.alpha = 1
      
         let db = Firestore.firestore()
         print(userID)

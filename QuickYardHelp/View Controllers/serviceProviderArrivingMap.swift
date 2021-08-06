@@ -24,6 +24,7 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var progressImage: UIImageView!
     
+    var obtainedPath = ""
     
     
     //Shows current user
@@ -50,6 +51,8 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
                     
                     let userAnnotation = MKPointAnnotation()
                     userAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                    
+                    self.obtainedPath = document?.get("path") as! String
                     
                     self.mapView.addAnnotation(userAnnotation)
                 }
@@ -115,24 +118,13 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
         
         let db = Firestore.firestore()
         
-        db.collection("users").document(serviceProviderID).addSnapshotListener { (document, err) in
-            if err != nil {
-                print("Error getting documents")
-            } else {
-                 if let document = document, document.exists {
-                
-                    let chatVC = self.storyboard?.instantiateViewController(identifier: "chatVC") as? chatViewController
-                   let obtainedPath = document.get("path") as! String
-                    chatVC?.path = obtainedPath
-                    self.view.window?.rootViewController = chatVC
-                    self.view.window?.makeKeyAndVisible()
-                   
-                   
-                 }            }
-        }
+        print("service provider id")
+        print(serviceProviderID)
+    
 
         
         let chatVC = self.storyboard?.instantiateViewController(identifier: "chatVC") as? chatViewController
+        chatVC?.path = self.obtainedPath
         self.view.window?.rootViewController = chatVC
         
         self.view.window?.makeKeyAndVisible()

@@ -28,7 +28,6 @@
 		E2798BCD266AF8C6002CA446 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2798BCC266AF8C6002CA446 /* HomeViewController.swift */; };
 		E2798BCF266AF8DB002CA446 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2798BCE266AF8DB002CA446 /* AccountViewController.swift */; };
 		E2BE6D7726B8C5A6001FD8CE /* messageTwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE6D7526B8C5A6001FD8CE /* messageTwoTableViewCell.swift */; };
-		E2BE6D7826B8C5A7001FD8CE /* messageTwoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2BE6D7626B8C5A6001FD8CE /* messageTwoTableViewCell.xib */; };
 		E2DE7ACD267171C300AED53D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE7ACC267171C300AED53D /* Constants.swift */; };
 		E2DE7ACF2672A3E500AED53D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE7ACE2672A3E400AED53D /* LocationManager.swift */; };
 		E2F9EA4D26A780DC00963D69 /* serviceProviderArrivingMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9EA4C26A780DC00963D69 /* serviceProviderArrivingMap.swift */; };
@@ -64,7 +63,6 @@
 		E2798BCC266AF8C6002CA446 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E2798BCE266AF8DB002CA446 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		E2BE6D7526B8C5A6001FD8CE /* messageTwoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageTwoTableViewCell.swift; sourceTree = "<group>"; };
-		E2BE6D7626B8C5A6001FD8CE /* messageTwoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = messageTwoTableViewCell.xib; sourceTree = "<group>"; };
 		E2DE7ACC267171C300AED53D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2DE7ACE2672A3E400AED53D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E2F9EA4C26A780DC00963D69 /* serviceProviderArrivingMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceProviderArrivingMap.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 				E2F9EA5B26B335D300963D69 /* messageTableViewCell.swift */,
 				E2F9EA5C26B335D300963D69 /* messageTableViewCell.xib */,
 				E2BE6D7526B8C5A6001FD8CE /* messageTwoTableViewCell.swift */,
-				E2BE6D7626B8C5A6001FD8CE /* messageTwoTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,7 +245,6 @@
 				E2798BBD266AF58A002CA446 /* LaunchScreen.storyboard in Resources */,
 				E250CECD266F03A400F514F5 /* GoogleService-Info.plist in Resources */,
 				E2798BBA266AF58A002CA446 /* Assets.xcassets in Resources */,
-				E2BE6D7826B8C5A7001FD8CE /* messageTwoTableViewCell.xib in Resources */,
 				E2798BB8266AF586002CA446 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -67,6 +67,8 @@ class chatViewController: UIViewController {
                             
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
+                                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                             }
                             
                         }
@@ -80,18 +82,28 @@ class chatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: Any) {
+        
+        if messageTextField.text == "" {
+            return
+        }
 
         if let messageBody = messageTextField.text, let messageSender = Auth.auth().currentUser?.email {
-            
             
             //create new document within messages for every message
             db.collection(self.path).addDocument(data: [
                 "sender": messageSender,
                 "body": messageBody,
-                "date": Date().timeIntervalSince1970
-            ]) { (error) in
+                "date": Date().timeIntervalSince1970])
+            
+            { (error) in
                 if let e = error {
                     print("Issue saving data to firestore \(e)")
+                } else {
+                     //Message succesfully sent
+                    DispatchQueue.main.async {
+                        self.messageTextField.text = ""
+                    }
+
                 }
             }
             

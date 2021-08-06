@@ -20,15 +20,20 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWF-tx-KvD">
                         <rect key="frame" x="10" y="10" width="295" height="78"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQJ-N4-sBW">
-                                <rect key="frame" x="8" y="27" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQJ-N4-sBW">
+                                <rect key="frame" x="10" y="10" width="275" height="58"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" name="messageColour"/>
+                        <constraints>
+                            <constraint firstItem="fQJ-N4-sBW" firstAttribute="leading" secondItem="bWF-tx-KvD" secondAttribute="leading" constant="10" id="BAU-tN-UwG"/>
+                            <constraint firstItem="fQJ-N4-sBW" firstAttribute="top" secondItem="bWF-tx-KvD" secondAttribute="top" constant="10" id="Wl5-OD-Zw6"/>
+                            <constraint firstAttribute="trailing" secondItem="fQJ-N4-sBW" secondAttribute="trailing" constant="10" id="i6j-Jr-EGW"/>
+                            <constraint firstAttribute="bottom" secondItem="fQJ-N4-sBW" secondAttribute="bottom" constant="10" id="rJE-YV-mbE"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
