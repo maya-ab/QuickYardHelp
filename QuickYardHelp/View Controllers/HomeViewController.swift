@@ -124,7 +124,9 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
                         if lat == nil && lon == nil || userType == nil {
                             
                         } else {
-                        self.addAnnotations(lat: lat, lon: lon, type: userType as! String, userID: userID)
+                            self.addAnnotations(lat: lat, lon: lon, type: userType as! String, userID: userID)
+                            
+                            
                         }
                         
                         

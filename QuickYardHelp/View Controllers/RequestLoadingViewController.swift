@@ -18,6 +18,7 @@ class RequestLoadingViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var waitingButton: UIButton!
+    
     @IBOutlet weak var usersChoice: UILabel!
     @IBOutlet weak var confirmRequestButton: UIButton!
     
@@ -25,7 +26,6 @@ class RequestLoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         roundCorners()
-        usersChoice.alpha = 0
         confirmRequestButton.alpha = 0
         confirmRequestButton.isEnabled = false
         super.viewDidLoad()
@@ -75,7 +75,7 @@ class RequestLoadingViewController: UIViewController {
             } else if waitingForResponse == false {
                 if didAccept {
                     //Request was accepted -- 
-                    self.usersChoice.alpha = 1
+                    self.usersChoice.text = "Request Accepted!"
                     self.confirmRequestButton.alpha = 1
                     self.confirmRequestButton.isEnabled = true
                     

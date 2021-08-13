@@ -18,7 +18,8 @@ class TypeOfUserViewController: UIViewController {
     
 
     override func viewDidLoad() {
-        nextButton.layer.cornerRadius = nextButton.frame.size.height / 4
+        nextButton.layer.cornerRadius = nextButton.frame.size.height / 5
+        provideServiceRect.alpha = 0.8
         
         super.viewDidLoad()
 
@@ -44,6 +45,7 @@ class TypeOfUserViewController: UIViewController {
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
+        
         if typeofUserInfo.selectedSegmentIndex == 1 {
             
             //provides service
