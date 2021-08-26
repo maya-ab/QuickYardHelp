@@ -29,7 +29,10 @@ class userMapDetails: UIViewController {
     @IBOutlet weak var doesHaveLeafRake: UILabel!
     
     @IBOutlet weak var requestButton: UIButton!
-    @IBOutlet weak var acceptancePending: UILabel!
+    
+    @IBOutlet weak var lawnMowerCheckMark: UIImageView!
+    @IBOutlet weak var snowRemovalCheckMark: UIImageView!
+    @IBOutlet weak var leafRakeCheckMark: UIImageView!
     
 
     override func viewDidLoad() {
@@ -37,9 +40,11 @@ class userMapDetails: UIViewController {
         requestButton.layer.cornerRadius = requestButton.frame.size.height / 4
 
         super.viewDidLoad()
-        doesHaveLawnMowerLabel.alpha  = 0
-        doesHaveSnowShovel.alpha = 0
-        doesHaveLeafRake.alpha = 0
+        lawnMowerCheckMark.alpha  = 0
+        snowRemovalCheckMark.alpha = 0
+        leafRakeCheckMark.alpha = 0
+        
+        
         
         getUserInfo()
     }
@@ -65,15 +70,15 @@ class userMapDetails: UIViewController {
                 self.userNameLabel.text = fullName
                 
                 if (doesHaveLawnMower) {
-                    self.doesHaveLawnMowerLabel.alpha = 1
+                    self.lawnMowerCheckMark.alpha = 1
                 }
                 
                 if (doesHaveSnowShovel) {
-                    self.doesHaveSnowShovel.alpha = 1
+                    self.snowRemovalCheckMark.alpha = 1
                 }
                 
                 if (doesHaveLeafRake) {
-                    self.doesHaveLeafRake.alpha = 1
+                    self.leafRakeCheckMark.alpha = 1
                 }
                 
             } else {

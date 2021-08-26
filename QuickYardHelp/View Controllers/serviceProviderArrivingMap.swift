@@ -53,7 +53,7 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
                     userAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                     
                     self.obtainedPath = document?.get("path") as! String
-                    
+                    print("going to add other user")
                     self.mapView.addAnnotation(userAnnotation)
                 }
             }
@@ -128,6 +128,19 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
         self.view.window?.rootViewController = chatVC
         
         self.view.window?.makeKeyAndVisible()
+    }
+    
+    //Set up custom design for map pin
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+        annotationView.markerTintColor = UIColor.clear
+        annotationView.glyphTintColor = UIColor.clear
+        
+        annotationView.canShowCallout = false
+        annotationView.image = UIImage(named: "serviceProviderIcon")
+
+        return annotationView
     }
     
 }

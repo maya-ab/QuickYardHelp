@@ -1,17 +1,22 @@
 //
-//  messageTwoTableViewCell.swift
+//  secondMessageTableViewCell.swift
 //  QuickYardHelp
 //
-//  Created by Maya Alejandra AB on 2021-08-02.
+//  Created by Maya Alejandra AB on 2021-08-12.
 //  Copyright © 2021 QuickYardHelpOrg. All rights reserved.
 //
 
 import UIKit
 
-class messageTwoTableViewCell: UITableViewCell {
+class secondMessageTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var messageBubble: UIView!
+    @IBOutlet weak var label: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        messageBubble.layer.cornerRadius = messageBubble.frame.size.height / 5
         // Initialization code
     }
 

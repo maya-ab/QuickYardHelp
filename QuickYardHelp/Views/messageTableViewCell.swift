@@ -13,19 +13,15 @@ class messageTableViewCell: UITableViewCell {
     @IBOutlet weak var messageBubble: UIView!
     @IBOutlet weak var label: UILabel!
     
-    //Constraints
-    @IBOutlet weak var messageBubbleFrontConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var messageBubbleBackConstraint: NSLayoutConstraint!
-    
-    
-    @IBOutlet weak var stackBackConstraint: NSLayoutConstraint!
-    
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        messageBubble.layer.cornerRadius = messageBubble.frame.size.height / 5
+        let height = messageBubble.frame.size.height
+        
+        messageBubble.layer.cornerRadius = height / 6
+        
         // Initialization code
     }
 

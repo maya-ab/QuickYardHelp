@@ -26,7 +26,8 @@
 		E2798BC9266AF86D002CA446 /* ServiceProviderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2798BC8266AF86D002CA446 /* ServiceProviderInfoViewController.swift */; };
 		E2798BCB266AF8A0002CA446 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2798BCA266AF8A0002CA446 /* SignUpViewController.swift */; };
 		E2798BCD266AF8C6002CA446 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2798BCC266AF8C6002CA446 /* HomeViewController.swift */; };
-		E2BE6D7726B8C5A6001FD8CE /* messageTwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE6D7526B8C5A6001FD8CE /* messageTwoTableViewCell.swift */; };
+		E2BE6D7B26C601DA001FD8CE /* secondMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE6D7926C601DA001FD8CE /* secondMessageTableViewCell.swift */; };
+		E2BE6D7C26C601DA001FD8CE /* secondMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2BE6D7A26C601DA001FD8CE /* secondMessageTableViewCell.xib */; };
 		E2DE7ACD267171C300AED53D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE7ACC267171C300AED53D /* Constants.swift */; };
 		E2DE7ACF2672A3E500AED53D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE7ACE2672A3E400AED53D /* LocationManager.swift */; };
 		E2F9EA4D26A780DC00963D69 /* serviceProviderArrivingMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9EA4C26A780DC00963D69 /* serviceProviderArrivingMap.swift */; };
@@ -60,7 +61,8 @@
 		E2798BC8266AF86D002CA446 /* ServiceProviderInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderInfoViewController.swift; sourceTree = "<group>"; };
 		E2798BCA266AF8A0002CA446 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E2798BCC266AF8C6002CA446 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		E2BE6D7526B8C5A6001FD8CE /* messageTwoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageTwoTableViewCell.swift; sourceTree = "<group>"; };
+		E2BE6D7926C601DA001FD8CE /* secondMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2BE6D7A26C601DA001FD8CE /* secondMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = secondMessageTableViewCell.xib; sourceTree = "<group>"; };
 		E2DE7ACC267171C300AED53D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2DE7ACE2672A3E400AED53D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E2F9EA4C26A780DC00963D69 /* serviceProviderArrivingMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceProviderArrivingMap.swift; sourceTree = "<group>"; };
@@ -165,7 +167,8 @@
 				E2798BB6266AF586002CA446 /* Main.storyboard */,
 				E2F9EA5B26B335D300963D69 /* messageTableViewCell.swift */,
 				E2F9EA5C26B335D300963D69 /* messageTableViewCell.xib */,
-				E2BE6D7526B8C5A6001FD8CE /* messageTwoTableViewCell.swift */,
+				E2BE6D7926C601DA001FD8CE /* secondMessageTableViewCell.swift */,
+				E2BE6D7A26C601DA001FD8CE /* secondMessageTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				E250CECD266F03A400F514F5 /* GoogleService-Info.plist in Resources */,
 				E2798BBA266AF58A002CA446 /* Assets.xcassets in Resources */,
 				E2798BB8266AF586002CA446 /* Main.storyboard in Resources */,
+				E2BE6D7C26C601DA001FD8CE /* secondMessageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +309,6 @@
 				E2F9EA5526B2635800963D69 /* chatViewController.swift in Sources */,
 				E25D3D3926900B2300B3B40A /* serviceRequestViewController.swift in Sources */,
 				E2798BCD266AF8C6002CA446 /* HomeViewController.swift in Sources */,
-				E2BE6D7726B8C5A6001FD8CE /* messageTwoTableViewCell.swift in Sources */,
 				E25D3D3D2696749200B3B40A /* ProfileViewController.swift in Sources */,
 				E2798BB1266AF586002CA446 /* AppDelegate.swift in Sources */,
 				E2798BC7266AF82D002CA446 /* TypeOfUserViewController.swift in Sources */,
@@ -316,6 +319,7 @@
 				E2F9EA4F26A7A6E900963D69 /* WorkProgressViewController.swift in Sources */,
 				E250CECF2670454500F514F5 /* Utilities.swift in Sources */,
 				E25D3D35268A5B0400B3B40A /* userMapDetails.swift in Sources */,
+				E2BE6D7B26C601DA001FD8CE /* secondMessageTableViewCell.swift in Sources */,
 				E25D3D3B269634AA00B3B40A /* ServiceRequestInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

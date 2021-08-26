@@ -41,7 +41,6 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     }
     
     func centerViewOnUserLocation() {
-
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             mapView.setRegion(region, animated: true)
@@ -160,8 +159,8 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
         annotationView.markerTintColor = UIColor.clear
         annotationView.glyphTintColor = UIColor.clear
         
-        annotationView.canShowCallout = false 
-
+        annotationView.canShowCallout = false
+        
         if annotation.title == "serviceProvider" {
             annotationView.image = UIImage(named: "serviceProviderIcon")
         } else {
@@ -191,12 +190,6 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
         
         
     }
-    
-   /* @IBAction func profileButtonTapped(_ sender: Any) {
-        let accountViewController = storyboard?.instantiateViewController(identifier: "accountVC") as! AccountViewController
-        present(accountViewController, animated: true, completion: nil)
-        
-    } */
     
    func checkIfServiceRequired() {
     print("checking if service is required")

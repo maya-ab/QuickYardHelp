@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReuseableCellTwo" rowHeight="106" id="KGk-i7-Jjw" customClass="secondMessageTableViewCell" customModule="QuickYardHelp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="454" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="454" height="106"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kEJ-gZ-H42">
+                        <rect key="frame" x="10" y="2.5" width="394" height="101"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBP-wf-cO2">
+                                <rect key="frame" x="0.0" y="0.0" width="394" height="81"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hi" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="al1-8U-luL">
+                                        <rect key="frame" x="10" y="10" width="374" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="messageColour"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="al1-8U-luL" secondAttribute="bottom" constant="10" id="Cpj-60-e4q"/>
+                                    <constraint firstAttribute="trailing" secondItem="al1-8U-luL" secondAttribute="trailing" constant="10" id="O1M-y6-BIF"/>
+                                    <constraint firstItem="al1-8U-luL" firstAttribute="top" secondItem="uBP-wf-cO2" secondAttribute="top" constant="10" id="jY2-gO-uqR"/>
+                                    <constraint firstItem="al1-8U-luL" firstAttribute="leading" secondItem="uBP-wf-cO2" secondAttribute="leading" constant="10" id="uCD-7G-LwI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="kEJ-gZ-H42" secondAttribute="bottom" constant="2.5" id="Ypv-Xh-YSc"/>
+                    <constraint firstItem="kEJ-gZ-H42" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="i5P-dW-Oy2"/>
+                    <constraint firstItem="kEJ-gZ-H42" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2.5" id="mnj-S8-YaY"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kEJ-gZ-H42" secondAttribute="trailing" constant="50" id="nQy-Ua-ZZJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="label" destination="al1-8U-luL" id="QUG-vW-6SU"/>
+                <outlet property="messageBubble" destination="uBP-wf-cO2" id="gwf-F2-Odm"/>
+            </connections>
+            <point key="canvasLocation" x="107" y="127"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="messageColour">
+            <color red="0.082352941176470587" green="0.80392156862745101" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

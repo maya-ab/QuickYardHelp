@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N4Y-Z6-Dxe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VlN-KM-dJW">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -136,7 +136,7 @@
                                 </state>
                                 <connections>
                                     <action selector="accountButtonTapped:" destination="VlN-KM-dJW" eventType="touchUpInside" id="Jcg-pV-5PA"/>
-                                    <segue destination="gTG-vO-O1Q" kind="presentation" id="4CV-5G-xvP"/>
+                                    <segue destination="gTG-vO-O1Q" kind="presentation" id="0tK-Yz-oQh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -541,11 +541,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services Available:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu4-0z-ItS">
                                 <rect key="frame" x="80" y="406" width="254.5" height="35"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fhc-jG-w86">
-                                <rect key="frame" x="97" y="456" width="160.5" height="97"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="fhc-jG-w86">
+                                <rect key="frame" x="97" y="456" width="160.5" height="99"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lawn Mower" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mt-gD-vaq">
                                         <rect key="frame" x="0.0" y="0.0" width="160.5" height="29"/>
@@ -554,17 +554,46 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snow Removal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO6-BW-Q53">
-                                        <rect key="frame" x="0.0" y="34" width="160.5" height="29"/>
+                                        <rect key="frame" x="0.0" y="35" width="160.5" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leaf Rake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp5-Xn-72U">
-                                        <rect key="frame" x="0.0" y="68" width="160.5" height="29"/>
+                                        <rect key="frame" x="0.0" y="70" width="160.5" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="pYe-gJ-Lov">
+                                <rect key="frame" x="292.5" y="449" width="35" height="113"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="P4f-Pc-pSS">
+                                        <rect key="frame" x="0.0" y="0.5" width="35" height="34"/>
+                                        <color key="tintColor" name="brandGreen"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="Bah-qs-A3q"/>
+                                            <constraint firstAttribute="width" constant="35" id="E98-a5-GQf"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Wug-HP-1KN">
+                                        <rect key="frame" x="0.0" y="39.5" width="35" height="34"/>
+                                        <color key="tintColor" name="brandGreen"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="fy6-1P-XeB"/>
+                                            <constraint firstAttribute="height" constant="35" id="hqS-hv-moz"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WVq-Lg-BW2">
+                                        <rect key="frame" x="0.0" y="78.5" width="35" height="34"/>
+                                        <color key="tintColor" name="brandGreen"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="3wN-d5-AOv"/>
+                                            <constraint firstAttribute="width" constant="35" id="Twf-Ld-WVr"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -574,9 +603,11 @@
                             <constraint firstItem="rlp-Kl-Ax5" firstAttribute="centerY" secondItem="bdg-4Z-LHE" secondAttribute="centerY" constant="280" id="3Pj-lu-GjJ"/>
                             <constraint firstItem="6Pm-9u-jJn" firstAttribute="centerX" secondItem="bdg-4Z-LHE" secondAttribute="centerX" id="5gj-0s-VKi"/>
                             <constraint firstItem="rlp-Kl-Ax5" firstAttribute="centerX" secondItem="bdg-4Z-LHE" secondAttribute="centerX" id="7Qx-da-y2M"/>
+                            <constraint firstItem="pYe-gJ-Lov" firstAttribute="top" secondItem="Qu4-0z-ItS" secondAttribute="bottom" constant="8" id="DJW-Qh-6sT"/>
                             <constraint firstItem="Qu4-0z-ItS" firstAttribute="top" secondItem="DP4-g1-cHc" secondAttribute="bottom" constant="30" id="DPf-Bf-Kf2"/>
                             <constraint firstItem="7od-bZ-YVg" firstAttribute="centerX" secondItem="bdg-4Z-LHE" secondAttribute="centerX" id="JBM-OG-mAT"/>
                             <constraint firstItem="Qu4-0z-ItS" firstAttribute="centerX" secondItem="bdg-4Z-LHE" secondAttribute="centerX" id="QOO-T0-ybO"/>
+                            <constraint firstItem="pYe-gJ-Lov" firstAttribute="leading" secondItem="fhc-jG-w86" secondAttribute="trailing" constant="35" id="UMR-GE-Wiw"/>
                             <constraint firstItem="DP4-g1-cHc" firstAttribute="top" secondItem="6Pm-9u-jJn" secondAttribute="bottom" constant="15" id="abi-ni-C2p"/>
                             <constraint firstItem="fhc-jG-w86" firstAttribute="centerX" secondItem="bdg-4Z-LHE" secondAttribute="centerX" constant="-30" id="bfJ-mJ-pcR"/>
                             <constraint firstItem="fhc-jG-w86" firstAttribute="top" secondItem="Qu4-0z-ItS" secondAttribute="bottom" constant="15" id="fN3-hq-xpx"/>
@@ -591,13 +622,16 @@
                         <outlet property="doesHaveLawnMowerLabel" destination="3Mt-gD-vaq" id="aAb-qo-UWf"/>
                         <outlet property="doesHaveLeafRake" destination="qp5-Xn-72U" id="f1S-rW-HkS"/>
                         <outlet property="doesHaveSnowShovel" destination="GO6-BW-Q53" id="byw-Mi-hr0"/>
+                        <outlet property="lawnMowerCheckMark" destination="P4f-Pc-pSS" id="dNe-20-Yfy"/>
+                        <outlet property="leafRakeCheckMark" destination="WVq-Lg-BW2" id="V6L-3b-jT3"/>
                         <outlet property="requestButton" destination="rlp-Kl-Ax5" id="HsI-7Y-KmC"/>
+                        <outlet property="snowRemovalCheckMark" destination="Wug-HP-1KN" id="Pi1-YE-1vj"/>
                         <outlet property="userNameLabel" destination="6Pm-9u-jJn" id="acQ-N8-xMI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4a-Si-2cc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2613" y="789"/>
+            <point key="canvasLocation" x="2611.594202898551" y="788.83928571428567"/>
         </scene>
         <!--Request Loading View Controller-->
         <scene sceneID="oFQ-PA-5an">
@@ -821,6 +855,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QjQ-kR-F1O"/>
                     </view>
+                    <navigationItem key="navigationItem" id="n1f-re-6S3"/>
                     <connections>
                         <outlet property="lawnMowerSwitch" destination="R9p-80-9sQ" id="Iuo-4i-Oil"/>
                         <outlet property="leafRakerSwitch" destination="eEp-R4-mG8" id="UKK-S9-qrP"/>
@@ -1209,6 +1244,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lG6-bv-gMx"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aVE-5Z-OeA"/>
                     <connections>
                         <outlet property="messageTextField" destination="OtX-r9-EyQ" id="iEh-Fb-Oa3"/>
                         <outlet property="tableView" destination="qmS-1S-rGX" id="2kQ-tl-3kZ"/>
@@ -1224,6 +1260,7 @@
         <image name="Start heading to your location" width="1053" height="689"/>
         <image name="arrow" width="265" height="223"/>
         <image name="blueRect" width="1000" height="1600"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="customerDescription" width="480" height="600"/>
         <image name="greenRect" width="1000" height="1600"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>

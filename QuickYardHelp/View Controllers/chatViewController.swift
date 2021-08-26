@@ -24,7 +24,7 @@ class chatViewController: UIViewController {
     var messagesDocID = ""
     var messageDoc = ""
     
-    var path = ""
+    var path = "/messages/1FeAy152ECWLpmghkBaz/messageDocs"
     
     var messages: [Message] = []
     
@@ -34,11 +34,8 @@ class chatViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "messageTableViewCell", bundle: nil), forCellReuseIdentifier: "ReuseableCell")
         
-       // print("getting doc path")
-     //   getDocPath()
-       // print("going to load messages")
-       // getDocPath()
-      //  print(path)
+        tableView.register(UINib(nibName: "secondMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "ReuseableCellTwo")
+        
        loadMessages()
 
         
@@ -122,30 +119,23 @@ extension chatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let message = messages[indexPath.row]
-                
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseableCell", for: indexPath) as! messageTableViewCell
-        
-        cell.label.text = message.body
-        
+
         //Message is from current user
         if message.sender == Auth.auth().currentUser?.email {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseableCell", for: indexPath) as! messageTableViewCell
+                       cell.label.text = message.body
+            return cell
     
         } else { //Other person
-            cell.messageBubble.backgroundColor = UIColor(named: "messageColour")
-
-            cell.messageBubbleFrontConstraint.constant = 0.00
-            print("added front constraint")
-            cell.messageBubble.updateConstraints()
             
-           // print("update")
-            cell.stackBackConstraint.constant = 100.00
-          //   print("back constraint added")
-           cell.updateConstraints()
-         //   print("update")
+            let secondCell = tableView.dequeueReusableCell(withIdentifier: "ReuseableCellTwo", for: indexPath) as! secondMessageTableViewCell
+            secondCell.label.text = message.body
+            
+             return secondCell
+             
         
         }
         
-        return cell
     }
     
 }
