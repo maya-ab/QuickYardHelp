@@ -18,12 +18,13 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     
     //UID of current user
     var uid = ""
+    var listOfBlockedUsers: Array<String> = []
 
     @IBOutlet weak var mapView: MKMapView!
     
     
     private let locationManager = CLLocationManager()
-    let regionInMeters: Double = 200000
+    let regionInMeters: Double = 800000
     
     
     override func viewDidLoad() {
@@ -31,7 +32,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         checkLocationServices()
         showOtherUsers()
-        
+
         checkIfServiceRequired()
     }
     
@@ -104,14 +105,11 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
             if err != nil {
                 print("Error getting documents")
             } else {
+                //Add users to map
                 for document in querySnapShot!.documents {
-                    
-                   // let name = document.get("firstname")
                     let userType = document.get("typeofuser")
                     let userID = document.documentID
-                    //self.userType = document.get("typeofuser") as! String
-      
-        
+                    
                     //Obtain coord from firebase
                     if let coord = document.get("coord") {
                         
@@ -120,6 +118,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
                         let lon = point.longitude
                         print(lat, lon)
                         
+                        //If coord exists add annotation
                         if lat == nil && lon == nil || userType == nil {
                             
                         } else {
@@ -132,6 +131,8 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
                     }
                     
                 }
+                
+                
             }
         }
     }
@@ -225,6 +226,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     }
     
  }
+    
     
     func showRequest() {
         let serviceRequiredInfoPage = storyboard?.instantiateViewController(identifier: "serviceRequestInfoVC") as? ServiceRequestInfoViewController

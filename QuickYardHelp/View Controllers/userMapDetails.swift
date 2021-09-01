@@ -12,7 +12,6 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 
-
 class userMapDetails: UIViewController {
     //Displays information of service provider
     //User can request their service
@@ -23,30 +22,30 @@ class userMapDetails: UIViewController {
     //ID of person who sent request (Self)
     var requesteeUserID = ""
     
+    var isBlocked = true
+    
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var doesHaveLawnMowerLabel: UILabel!
     @IBOutlet weak var doesHaveSnowShovel: UILabel!
     @IBOutlet weak var doesHaveLeafRake: UILabel!
     
     @IBOutlet weak var requestButton: UIButton!
+    @IBOutlet weak var reportButtonUI: UIButton!
     
     @IBOutlet weak var lawnMowerCheckMark: UIImageView!
     @IBOutlet weak var snowRemovalCheckMark: UIImageView!
     @IBOutlet weak var leafRakeCheckMark: UIImageView!
     
-
+    
+    @IBOutlet weak var profileBackgroundImage: UIImageView!
+    
+    @IBOutlet var backgroundView: UIView!
+    
     override func viewDidLoad() {
-        
-        requestButton.layer.cornerRadius = requestButton.frame.size.height / 4
-
+        print("checking if blocked")
+        checkIfBlocked()
         super.viewDidLoad()
-        lawnMowerCheckMark.alpha  = 0
-        snowRemovalCheckMark.alpha = 0
-        leafRakeCheckMark.alpha = 0
         
-        
-        
-        getUserInfo()
     }
     
     func getUserInfo() {
@@ -109,13 +108,85 @@ class userMapDetails: UIViewController {
         //Show waiting page
         let waitingPage = storyboard?.instantiateViewController(identifier: "waitingVC") as? RequestLoadingViewController
         waitingPage?.serviceProviderID = self.userID
+        
         view.window?.rootViewController = waitingPage
         view.window?.makeKeyAndVisible()
     }
     
+    @IBAction func reportButton(_ sender: Any) {
+        
+        let reportPage = storyboard?.instantiateViewController(identifier: "reportBlockVC") as? reportAndBlockViewController
+        
+        reportPage?.selectedUser = userID
+        present(reportPage!, animated: true, completion: nil)
+                                
+        
+    }
     
+    func checkIfBlocked() {
+        let db = Firestore.firestore()
+        let ref = requesteeUserID
+        
+        db.collection("users").document(ref).addSnapshotListener { (documentSnapshot, error) in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            
+        
+            if documentSnapshot?.get("block") == nil {
+                print("blocked list empty")
+                DispatchQueue.main.async {
+                     self.isBlocked = false
+                    self.showUserDisplay()
+                }
 
+                return
+                
+            } else {
+                
+                
+                let listOfBlocked = document.get("block") as! Array<String>
+                print("checking if on block list")
+                for String in listOfBlocked {
+                    if String == self.userID {
+                        
+                        DispatchQueue.main.async {
+                             self.isBlocked = true
+                            self.blockUserDisplay()
+                        }
+                        
+                    }
+                }
+            }
     
+        }
+        
+    }
+    
+    func blockUserDisplay() {
+        self.requestButton.alpha = 0
+        self.reportButtonUI.alpha = 0
+        
+        self.leafRakeCheckMark.alpha = 0
+        self.lawnMowerCheckMark.alpha = 0
+        self.snowRemovalCheckMark.alpha = 0
+        
+        self.userNameLabel.text = "Blocked"
+        self.userNameLabel.textColor = UIColor(named: "redColour")
+        self.profileBackgroundImage.alpha = 0
+    
+    }
+    
+    func showUserDisplay() {
+        requestButton.layer.cornerRadius = requestButton.frame.size.height / 4
+
+        
+        lawnMowerCheckMark.alpha  = 0
+        snowRemovalCheckMark.alpha = 0
+        leafRakeCheckMark.alpha = 0
+        getUserInfo()
+    }
 
 }
 

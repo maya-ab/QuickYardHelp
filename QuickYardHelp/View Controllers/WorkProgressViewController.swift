@@ -38,6 +38,13 @@ class WorkProgressViewController: UIViewController {
         
         if hereButton.title(for: UIControl.State.normal) == "done" {
             db.collection("users").document(userID).setData(["isDone" : true], merge: true)
+            
+            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+            
+            self.view.window?.rootViewController = homeViewController
+            self.view.window?.makeKeyAndVisible()
+            
+            
         }
     }
     
