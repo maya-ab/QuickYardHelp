@@ -80,8 +80,8 @@ class RequestLoadingViewController: UIViewController {
                     self.confirmRequestButton.isEnabled = true
                     
                     //Store mesage document ID in other user as well
-                    let messageDocId = document.get("messageDocumentID") as! String
-                    db.collection("users").document(currentUserRef).setData(["messageDocumentID" : messageDocId], merge: true)
+                    let messageDocId = document.get("path") as! String
+                    db.collection("users").document(currentUserRef).setData(["path" : messageDocId], merge: true)
                     
                     self.gotResponse()
     

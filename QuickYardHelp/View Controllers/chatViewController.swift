@@ -24,7 +24,7 @@ class chatViewController: UIViewController {
     var messagesDocID = ""
     var messageDoc = ""
     
-    var path = "/messages/1FeAy152ECWLpmghkBaz/messageDocs"
+    var path = ""
     
     var messages: [Message] = []
     
@@ -35,12 +35,25 @@ class chatViewController: UIViewController {
         tableView.register(UINib(nibName: "messageTableViewCell", bundle: nil), forCellReuseIdentifier: "ReuseableCell")
         
         tableView.register(UINib(nibName: "secondMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "ReuseableCellTwo")
+        obtainPath()
         
-       loadMessages()
+       //loadMessages()
 
         
     }
     
+    func obtainPath() {
+        
+        db.collection("users").document(currentUserRef).getDocument { (document, err) in
+            
+            if let document = document, document.exists {
+                
+                self.path = document.get("path") as! String
+                self.loadMessages()
+                
+            }
+        }
+    }
 
 
     func loadMessages() {

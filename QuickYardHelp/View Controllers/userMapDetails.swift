@@ -39,10 +39,13 @@ class userMapDetails: UIViewController {
     
     @IBOutlet weak var profileBackgroundImage: UIImageView!
     
+    @IBOutlet weak var servicesAvailableLabel: UILabel!
+    
     @IBOutlet var backgroundView: UIView!
     
     override func viewDidLoad() {
         print("checking if blocked")
+        showUserDisplay()
         checkIfBlocked()
         super.viewDidLoad()
         
@@ -61,6 +64,7 @@ class userMapDetails: UIViewController {
                 let firstName = document.get("firstname") as! String
                 let lastName = document.get("lastname") as! String
                 let fullName = firstName + " " + lastName
+                let typeOfUser = document.get("typeofuser") as! String
                 
                 let doesHaveLawnMower = document.get("doesOwnLawnMower") as! Bool
                 let doesHaveSnowShovel = document.get("doesOwnSnowShovel") as! Bool
@@ -80,6 +84,10 @@ class userMapDetails: UIViewController {
                     self.leafRakeCheckMark.alpha = 1
                 }
                 
+                if typeOfUser == "serviceRequired" {
+                    self.requiresServiceDisplay()
+                }
+                
             } else {
                 print("Doc does not exist")
             }
@@ -87,6 +95,7 @@ class userMapDetails: UIViewController {
         
         print("Get user info worked")
     }
+    
     
     @IBAction func requestButtonTapped(_ sender: Any) {
         requestButton.alpha = 0
@@ -123,44 +132,99 @@ class userMapDetails: UIViewController {
         
     }
     
+    //1. Check if we blocked them
+    //2. Check if they blocked us!
     func checkIfBlocked() {
+        print("checking if blocked")
         let db = Firestore.firestore()
         let ref = requesteeUserID
         
-        db.collection("users").document(ref).addSnapshotListener { (documentSnapshot, error) in
+        db.collection("users").document(ref).getDocument { (documentSnapshot, error) in
             guard let document = documentSnapshot else {
               print("Error fetching document: \(error!)")
               return
             }
             
-        
+            //Block list doesn't exist
             if documentSnapshot?.get("block") == nil {
                 print("blocked list empty")
                 DispatchQueue.main.async {
-                     self.isBlocked = false
-                    self.showUserDisplay()
+                    self.isBlocked = false
+                    //self.showUserDisplay()
                 }
-
+                self.checkIfTheyBlockedUs()
                 return
-                
+        
             } else {
-                
-                
+                // Has blocked list
                 let listOfBlocked = document.get("block") as! Array<String>
                 print("checking if on block list")
+                let max = listOfBlocked.count
+                var currentItem = -1
+                
+                
                 for String in listOfBlocked {
+                    currentItem = currentItem + 1
                     if String == self.userID {
-                        
+            
                         DispatchQueue.main.async {
                              self.isBlocked = true
                             self.blockUserDisplay()
                         }
-                        
+                    }
+                    
+                    if max == currentItem && self.isBlocked == false {
+                        self.checkIfTheyBlockedUs()
+                        //self.showUserDisplay()
                     }
                 }
             }
-    
         }
+    }
+    
+    func checkIfTheyBlockedUs() {
+        let db = Firestore.firestore()
+        let ref = requesteeUserID
+        
+        db.collection("users").document(ref).getDocument { (documentSnapshot, error) in
+            guard let document = documentSnapshot else {
+              print("Error fetching document: \(error!)")
+              return
+            }
+            
+            //BlockedBy list doesn't exist
+            if documentSnapshot?.get("blockedby") == nil {
+                print("blockedby list empty")
+                DispatchQueue.main.async {
+                    self.isBlocked = false
+                    self.showUserDisplay()
+                }
+                return
+                
+            } else {
+                // Has blockedBy list
+                let listOfBlocked = document.get("blockedby") as! Array<String>
+                print("checking if on blockby list")
+                let max = listOfBlocked.count
+                var currentItem = -1
+                
+                for String in listOfBlocked {
+                    currentItem = currentItem + 1
+                    if String == self.requesteeUserID {
+                        DispatchQueue.main.async {
+                             self.isBlocked = true
+                            self.blockUserDisplay()
+                        }
+                    }
+                    
+                    if max == currentItem && self.isBlocked == false {
+                        self.checkIfTheyBlockedUs()
+                        self.showUserDisplay()
+                    }
+                }
+            }
+        }
+        
         
     }
     
@@ -179,13 +243,36 @@ class userMapDetails: UIViewController {
     }
     
     func showUserDisplay() {
+        
         requestButton.layer.cornerRadius = requestButton.frame.size.height / 4
 
         
         lawnMowerCheckMark.alpha  = 0
         snowRemovalCheckMark.alpha = 0
         leafRakeCheckMark.alpha = 0
+        
         getUserInfo()
+    }
+    
+    func requiresServiceDisplay() {
+        profileBackgroundImage.image = UIImage(named: "greenRect")
+        
+        
+        
+        
+        servicesAvailableLabel.text = "Looking For Yard Help"
+        requestButton.alpha = 0
+        requestButton.isEnabled = false
+        
+        lawnMowerCheckMark.alpha  = 0
+        snowRemovalCheckMark.alpha = 0
+        leafRakeCheckMark.alpha = 0
+        
+        doesHaveLawnMowerLabel.alpha = 0
+        doesHaveSnowShovel.alpha = 0
+        doesHaveLeafRake.alpha = 0
+        
+    
     }
 
 }

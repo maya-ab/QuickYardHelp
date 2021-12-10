@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     
     
     private let locationManager = CLLocationManager()
-    let regionInMeters: Double = 800000
+    let regionInMeters: Double = 1000000
     
     
     override func viewDidLoad() {
@@ -35,6 +35,10 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
 
         checkIfServiceRequired()
     }
+    
+    //Block Function
+    //1. Remove blocked users or give them option to unblock?
+    //2. Check if we are on anyone's block list 
     
     func setUpLocationManager() {
         locationManager.delegate = self
@@ -159,8 +163,12 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
         let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
         annotationView.markerTintColor = UIColor.clear
         annotationView.glyphTintColor = UIColor.clear
-        
+       
+       
         annotationView.canShowCallout = false
+        annotationView.subtitleVisibility = MKFeatureVisibility.hidden
+        annotationView.titleVisibility = MKFeatureVisibility.hidden
+        
         
         if annotation.title == "serviceProvider" {
             annotationView.image = UIImage(named: "serviceProviderIcon")
@@ -168,7 +176,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
             annotationView.image = UIImage(named: "serviceRequiredIcon")
         }
              
-        return annotationView
+            return annotationView
     }
     
     //When annotation is shown after user has clicked on it
@@ -180,6 +188,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
         
         let selectedAnnotation = view.annotation
         let userID = selectedAnnotation?.subtitle
+        
         
         
         let userDetailsViewController = storyboard?.instantiateViewController(identifier: "userMapDetialsVC") as! userMapDetails

@@ -22,9 +22,13 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
     //Selected service provider
     var serviceProviderID = ""
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var progressImage: UIImageView!
+    @IBOutlet weak var chatButton: UIButton!
+    
+    
     
     var obtainedPath = ""
+    
+    @IBOutlet weak var progressLabel: UILabel!
     
     
     //Shows current user
@@ -54,11 +58,30 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
                     
                     self.obtainedPath = document?.get("path") as! String
                     print("going to add other user")
+                    
+                    
                     self.mapView.addAnnotation(userAnnotation)
+                
+                    
                 }
             }
         }
         
+    }
+    
+    //Set up custom design for map pin
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+        annotationView.markerTintColor = UIColor.clear
+        annotationView.glyphTintColor = UIColor.clear
+        
+        annotationView.canShowCallout = false
+        annotationView.subtitleVisibility = MKFeatureVisibility.hidden
+        annotationView.titleVisibility = MKFeatureVisibility.hidden
+        annotationView.image = UIImage(named: "serviceProviderIcon")
+
+        return annotationView
     }
     
     //Update location of user until they arive -> determined by updateProgressImage
@@ -97,7 +120,8 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
             let isUserHere = document.get("isHere") as! Bool
             
             if isUserHere {
-                self.progressImage.image = UIImage(named: "serviceProviderWorking")
+                self.progressLabel.text = "The service provider has arrived"
+                
             }
             
             if document.get("isDone") == nil {
@@ -106,41 +130,31 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
             
             let isUserDone = document.get("isDone") as! Bool
             
-            if isUserDone {
-                self.progressImage.image = UIImage(named: "serviceProviderDone")
+            if isUserDone && isUserHere {
+                self.progressLabel.text = "The service provider is done"
+                self.chatButton.setTitle("Go Home", for: UIControl.State.normal)
             }
         
         }
     }
-
+    
 
     @IBAction func chatButtonTapped(_ sender: Any) {
         
-        let db = Firestore.firestore()
-        
         print("service provider id")
         print(serviceProviderID)
-    
-
         
-        let chatVC = self.storyboard?.instantiateViewController(identifier: "chatVC") as? chatViewController
-        chatVC?.path = self.obtainedPath
-        self.view.window?.rootViewController = chatVC
+        if chatButton.currentTitle == "Go Home" {
+            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+                          
+                          self.view.window?.rootViewController = homeViewController
+                          self.view.window?.makeKeyAndVisible()
+            
+        }
         
-        self.view.window?.makeKeyAndVisible()
+        
     }
     
-    //Set up custom design for map pin
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
-        annotationView.markerTintColor = UIColor.clear
-        annotationView.glyphTintColor = UIColor.clear
-        
-        annotationView.canShowCallout = false
-        annotationView.image = UIImage(named: "serviceProviderIcon")
 
-        return annotationView
-    }
     
 }

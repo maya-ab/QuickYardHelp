@@ -14,6 +14,11 @@ import FirebaseAuth
 class reportAndBlockViewController: UIViewController {
     
     var selectedUser = ""
+    let ref = Auth.auth().currentUser?.uid ?? "nil"
+    let db = Firestore.firestore()
+    
+    var createNewBlockByList: [String] = []
+    var createNewBlockList: [String] = []
     
     
     @IBOutlet weak var reportThisUserLabel: UILabel!
@@ -48,13 +53,59 @@ class reportAndBlockViewController: UIViewController {
         
     }
     
+    //Check if when there's no existing list, if we should add object as list or just a string
+    
     @IBAction func blockButtonPressed(_ sender: Any) {
-        let db = Firestore.firestore()
-        let ref = Auth.auth().currentUser?.uid ?? "nil"
+        let userToBlock = [selectedUser]
+        //var doesHaveBlockedList = false
+        print("selected user")
+        print(selectedUser)
         
-        let blockedUsers = [selectedUser]
+        //Add to selectedUsers "Blocked by list" which we create if doesnt exist
+        db.collection("users").document(selectedUser).getDocument { (document, err) in
+            
+            if let document = document, document.exists {
+                
+                if let blockedByList = document.get("blockedby") as? Array<Any> {
+                    print("Has a blocked by list")
+                    var newBlockedByList = blockedByList
+                    newBlockedByList.append(self.ref)
+                    
+                    self.db.collection("users").document(self.selectedUser).setData(["blockedBy" : newBlockedByList], merge: true)
+                } else {
+                    
+                    self.createNewBlockByList.append(self.selectedUser)
+                    print("making a blocked by list")
+                    self.db.collection("users").document(self.selectedUser).setData(["blockedby" : self.createNewBlockByList], merge: true)
+                }
+                
+            }
+        }
         
-        db.collection("users").document(ref).setData(["block" : blockedUsers], merge: true)
+        
+        // Check if user has a list of blocked users
+        db.collection("users").document(ref).getDocument { (document, err) in
+            
+            if let document = document, document.exists {
+                
+                //User has other people blocked, add selectedUser to list and add to database
+                if let blockedList = document.get("block") as? Array<Any> {
+                    print("blocked list exists")
+                    var newBlockList = blockedList
+                    newBlockList.append(self.selectedUser)
+                    
+                    self.db.collection("users").document(self.ref).setData(["block" : newBlockList], merge: true)
+                    
+                } else {
+                //Create blocked list
+                    self.createNewBlockList.append(self.ref)
+                    print("blocked list doesn't exist")
+                    self.db.collection("users").document(self.ref).setData(["block" : self.createNewBlockList], merge: true)
+                }
+                
+            
+            }
+        }
         
         takeUserHome()
 
