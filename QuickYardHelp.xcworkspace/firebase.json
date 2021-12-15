@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": " /Users/Maya.School/Documents/QuickYardHelp/QuickYardHelp",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
