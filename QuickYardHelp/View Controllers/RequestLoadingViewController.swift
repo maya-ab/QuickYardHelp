@@ -17,7 +17,7 @@ class RequestLoadingViewController: UIViewController {
     var serviceProviderID = ""
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var waitingButton: UIButton!
+    @IBOutlet weak var stopButtonLabel: UIButton!
     
     @IBOutlet weak var usersChoice: UILabel!
     @IBOutlet weak var confirmRequestButton: UIButton!
@@ -34,7 +34,7 @@ class RequestLoadingViewController: UIViewController {
     }
     
     func roundCorners() {
-        waitingButton.layer.cornerRadius = waitingButton.frame.size.height / 4
+        stopButtonLabel.layer.cornerRadius = stopButtonLabel.frame.size.height / 4
         
         confirmRequestButton.layer.cornerRadius = confirmRequestButton.frame.size.height / 4
         
@@ -51,7 +51,7 @@ class RequestLoadingViewController: UIViewController {
         let currentUserRef = Auth.auth().currentUser?.uid ?? "nil"
         
         //Check if service provider gave a response
-        userRef.addSnapshotListener { (documentSnapshot, error) in
+        userRef.addSnapshotListener { [self] (documentSnapshot, error) in
             guard let document = documentSnapshot else {
               print("Error fetching document: \(error!)")
               return
@@ -79,17 +79,24 @@ class RequestLoadingViewController: UIViewController {
                     self.confirmRequestButton.alpha = 1
                     self.confirmRequestButton.isEnabled = true
                     
+                    self.stopButtonLabel.alpha = 0
+                    self.stopButtonLabel.isEnabled = false
+                    
                     //Store mesage document ID in other user as well
                     let messageDocId = document.get("path") as! String
                     db.collection("users").document(currentUserRef).setData(["path" : messageDocId], merge: true)
                     
+                    
                     self.gotResponse()
+                    
+                    
     
                 } else if didAccept == false {
                     self.usersChoice.alpha = 1
                     self.usersChoice.text = "Request Declined"
                     self.gotResponse()
-                    self.waitingButton.setTitle("Go Home", for: UIControl.State.normal)
+                    
+                    self.stopButtonLabel.setTitle("Go Home", for: UIControl.State.normal)
                 }
             }
             
@@ -98,11 +105,23 @@ class RequestLoadingViewController: UIViewController {
     }
     
     //Take them back home/Offer was declined
-    //If offer was accepted then take them home but highlight service provider
-    // have service provider click a done button when theyre done
+    // Can stop request until other user accepts 
     @IBAction func stopRequestTapped(_ sender: Any) {
+        let buttonTitle = self.stopButtonLabel.title(for: UIControl.State.normal)
         
-        takeUserHome()
+        if buttonTitle == "Stop Request" {
+            let db = Firestore.firestore()
+            //Let user know request was stopped
+            db.collection("users").document(serviceProviderID).setData(["didStopRequest" : true], merge: true)
+            
+            takeUserHome()
+            
+        } else {
+
+            takeUserHome()
+            
+        }
+        
     }
     
     @IBAction func confirmRequestTapped(_ sender: Any) {

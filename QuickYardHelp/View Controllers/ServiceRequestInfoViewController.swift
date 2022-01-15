@@ -19,6 +19,10 @@ class ServiceRequestInfoViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var infoStack: UIStackView!
+    
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var declineButton: UIButton!
     
@@ -29,6 +33,7 @@ class ServiceRequestInfoViewController: UIViewController {
         
         super.viewDidLoad()
         checkWhoSentRequest()
+        checkIfCancelled()
         
         
     }
@@ -60,7 +65,7 @@ class ServiceRequestInfoViewController: UIViewController {
     
     //Take user back home, dismiss request, tell requestee their request was declined
     @IBAction func declineButtonTapped(_ sender: Any) {
-        db.collection("users").document(ref).setData(["waitingForResponse" : false, "didAccept": false], merge: true)
+        db.collection("users").document(ref).setData(["waitingForResponse" : false, "didAccept": false, "didStopRequest": false], merge: true)
         returnHome()
     }
     
@@ -73,21 +78,57 @@ class ServiceRequestInfoViewController: UIViewController {
     
     //Only if waitngForResponse is false // Listener or just when button pressed?
     func checkIfCancelled() {
-        db.collection("users").document(ref).getDocument { (document, err) in
+        
+        print("checking if cancelled")
+        
+        //db.collection("users").document(ref).addSnapshotListener { document, err in
+            
+       // }
+        
+        db.collection("users").document(ref).addSnapshotListener { [self] (documentSnapshot, error) in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+              return
+            }
+            guard let data = document.data() else {
+              print("Document data was empty.")
+              return
+            }
+            
+            if document.get("didStopRequest") == nil {
+                print("nil")
+                return
+            }
+            
+            let didStopRequest = document.get("didStopRequest") as! Bool
+            print(didStopRequest)
+            if didStopRequest {
+                
+                titleLabel.text = "Request Stopped"
+                
+                acceptButton.alpha = 0
+                
+                self.declineButton.backgroundColor = UIColor.black
+                
+                self.declineButton.setTitle("Go Home", for: UIControl.State.normal)
+                
+                
+                infoStack.alpha = 0
+                
+        }
             
         }
     }
     
-    //Checks who sent request and sets users data
-    func checkWhoSentRequest() {
-        //Check users data (self) who sent request
-        let db = Firestore.firestore()
-        let userID = Auth.auth().currentUser?.uid ?? "nil"
-        let userRef = db.collection("users").document(userID)
+    func setInformation() {
+        let requesteeRef = db.collection("users").document(customerID).documentID
         
+        let userRef = db.collection("users").document(requesteeRef)
+        
+        //Set Information
         userRef.getDocument { (document, err) in
             if let document = document, document.exists {
-                self.customerID = document.get("customerID") as! String
+            
                 self.nameLabel.text = document.get("firstname") as? String
                 self.addressLabel.text = document.get("address") as? String
                 self.phoneLabel.text = document.get("phonenumber") as? String
@@ -97,6 +138,31 @@ class ServiceRequestInfoViewController: UIViewController {
             }
 
         }
+    }
+    
+    //Checks who sent request and sets users data
+    func checkWhoSentRequest() {
+        //Check users data (self) who sent request
+        let db = Firestore.firestore()
+        let selfID = Auth.auth().currentUser?.uid ?? "nil"
+        let selfRef = db.collection("users").document(selfID)
+        
+
+        //Obtain ID of Requestee
+        selfRef.getDocument { (document, err) in
+            if let document = document, document.exists {
+                self.customerID = document.get("customerID") as! String
+                self.setInformation()
+                
+            } else {
+                print("Doc does not exist")
+            }
+
+        }
+        
+    
+        
+        
     }
     
     
