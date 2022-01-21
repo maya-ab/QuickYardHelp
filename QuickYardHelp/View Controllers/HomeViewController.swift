@@ -202,6 +202,8 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     }
     
    func checkIfServiceRequired() {
+       
+       
     print("checking if service is required")
         let db = Firestore.firestore()
         let ref = Auth.auth().currentUser?.uid ?? "nil"
@@ -230,6 +232,18 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
             
         if isServiceRequired {
             print("service required")
+            //print(data)
+            
+           // guard let customerID = document.get("customerID") else {
+             // print("Document had no customerID")
+             // return
+                
+                
+           // }
+           // print("customer ID")
+           // print(customerID)
+            
+            
             self.showRequest()
         }
     }
@@ -238,6 +252,8 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     
     
     func showRequest() {
+        print("Going to show request")
+        
         let serviceRequiredInfoPage = storyboard?.instantiateViewController(identifier: "serviceRequestInfoVC") as? ServiceRequestInfoViewController
         
         view.window?.rootViewController = serviceRequiredInfoPage

@@ -111,8 +111,8 @@ class userMapDetails: UIViewController {
         print(ref)
         print(userRef)
         
-        userRef.setData(["waitingForResponse" : true], merge: true)
-        userRef.setData(["customerID" : selfID], merge: true)
+        userRef.setData(["customerID" : selfID, "waitingForResponse" : true], merge: true)
+       // userRef.setData(["customerID" : selfID], merge: true)
 
         //Show waiting page
         let waitingPage = storyboard?.instantiateViewController(identifier: "waitingVC") as? RequestLoadingViewController

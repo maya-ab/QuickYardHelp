@@ -27,13 +27,17 @@ class ServiceRequestInfoViewController: UIViewController {
     @IBOutlet weak var declineButton: UIButton!
     
     override func viewDidLoad() {
+        
+        
         acceptButton.layer.cornerRadius = acceptButton.frame.size.height / 4
         
         declineButton.layer.cornerRadius = declineButton.frame.size.height / 5
         
         super.viewDidLoad()
-        checkWhoSentRequest()
+        
         checkIfCancelled()
+        checkWhoSentRequest()
+        
         
         
     }
@@ -142,15 +146,19 @@ class ServiceRequestInfoViewController: UIViewController {
     
     //Checks who sent request and sets users data
     func checkWhoSentRequest() {
+        
+        print("who sent request")
         //Check users data (self) who sent request
-        let db = Firestore.firestore()
-        let selfID = Auth.auth().currentUser?.uid ?? "nil"
-        let selfRef = db.collection("users").document(selfID)
+        //let db = Firestore.firestore()
+       // let selfID = Auth.auth().currentUser?.uid ?? "nil"
+        //let selfRef = db.collection("users").document(selfID)
         
 
         //Obtain ID of Requestee
-        selfRef.getDocument { (document, err) in
+        db.collection("users").document(ref).getDocument { (document, err) in
             if let document = document, document.exists {
+                
+                
                 self.customerID = document.get("customerID") as! String
                 self.setInformation()
                 
@@ -159,10 +167,7 @@ class ServiceRequestInfoViewController: UIViewController {
             }
 
         }
-        
-    
-        
-        
+             
     }
     
     
