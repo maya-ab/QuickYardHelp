@@ -122,7 +122,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
                         let lon = point.longitude
                         print(lat, lon)
                         
-                        //If coord exists add annotation
+                        //If coord exists, add annotation
                         if lat == nil && lon == nil || userType == nil {
                             
                         } else {
@@ -150,7 +150,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
         let userAnnotation = MKPointAnnotation()
         
         userAnnotation.title = type
-        userAnnotation.subtitle = userID   //Want to hide this, make more private
+        userAnnotation.subtitle = userID   //hidden
         userAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         
         mapView.addAnnotation(userAnnotation)
@@ -180,16 +180,11 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
     }
     
     //When annotation is shown after user has clicked on it
-    // --> Show info if its a service provider
-    // --> What to do if someone requires a service ??
-    
     //Do not click on self -> Nil
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
         let selectedAnnotation = view.annotation
         let userID = selectedAnnotation?.subtitle
-        
-        
         
         let userDetailsViewController = storyboard?.instantiateViewController(identifier: "userMapDetialsVC") as! userMapDetails
         
@@ -225,10 +220,13 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
             return
         }
             
+            
         let isServiceRequired = document.get("waitingForResponse") as! Bool
-        
+            
         print("isServiceRequired:")
         print(isServiceRequired)
+            
+        
             
         if isServiceRequired {
             print("service required")
@@ -246,6 +244,26 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
             
             self.showRequest()
         }
+            
+        // Check if doing a job //for worker // Make th
+            
+            
+            
+            let isWorking = document.get("isDone") as! Bool
+            
+            
+            if isWorking == nil {
+                
+            }
+            
+            if !isWorking {
+                let workProgressVC = self.storyboard?.instantiateViewController(identifier: "workProgressVC") as? WorkProgressViewController
+                workProgressVC?.customerID = document.get("customerID") as! String //Provide customer ID
+                self.view.window?.rootViewController = workProgressVC
+                self.view.window?.makeKeyAndVisible()
+            }
+            
+            
     }
     
  }
@@ -265,6 +283,7 @@ class HomeViewController: UIViewController, MKMapViewDelegate {
         let profilePage = storyboard?.instantiateViewController(identifier: "profileVC") as? ProfileViewController
         present(profilePage!, animated: true, completion: nil)
     }
+    
     
  }
 

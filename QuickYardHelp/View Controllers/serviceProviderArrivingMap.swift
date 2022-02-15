@@ -42,6 +42,9 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
     }
     
     func addOtherUser() {
+        
+        //update customers location on their screen
+        
         let db = Firestore.firestore()
         
         db.collection("users").document(serviceProviderID).addSnapshotListener { (document, err) in
@@ -71,16 +74,29 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
     
     //Set up custom design for map pin
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation as? MKUserLocation != mapView.userLocation else {
+            let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
+            annotationView.markerTintColor = UIColor.clear
+            annotationView.glyphTintColor = UIColor.clear
+           
+            annotationView.canShowCallout = false
+            annotationView.subtitleVisibility = MKFeatureVisibility.hidden
+            annotationView.titleVisibility = MKFeatureVisibility.hidden
+            annotationView.image = UIImage(named: "serviceRequiredIcon")
         
-        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+            return annotationView 
+            
+        }
+        
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
         annotationView.markerTintColor = UIColor.clear
         annotationView.glyphTintColor = UIColor.clear
-        
+       
         annotationView.canShowCallout = false
         annotationView.subtitleVisibility = MKFeatureVisibility.hidden
         annotationView.titleVisibility = MKFeatureVisibility.hidden
         annotationView.image = UIImage(named: "serviceProviderIcon")
-
+        
         return annotationView
     }
     
@@ -154,6 +170,9 @@ class serviceProviderArrivingMap: UIViewController, MKMapViewDelegate {
         
         
     }
+    
+    
+
     
 
     

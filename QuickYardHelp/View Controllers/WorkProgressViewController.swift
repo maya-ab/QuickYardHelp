@@ -15,6 +15,9 @@ import MapKit
 import CoreLocation
 
 class WorkProgressViewController: UIViewController, MKMapViewDelegate {
+    //Provider page
+    // Show home in green (stagnent)
+    // update us in blue
     
     var customerID = ""
     var obtainedPath = ""
@@ -51,9 +54,11 @@ class WorkProgressViewController: UIViewController, MKMapViewDelegate {
                     
                     let userAnnotation = MKPointAnnotation()
                     userAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                    
                     //Get path for messaging ?
                     //self.obtainedPath = document?.get("path") as! String
-                    print("going to add other user")
+                    print("coord:")
+                    print(point)
                     
                     
                     self.mapView.addAnnotation(userAnnotation)
@@ -65,20 +70,24 @@ class WorkProgressViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    //Set up custom design for map pin
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
-        annotationView.markerTintColor = UIColor.clear
-        annotationView.glyphTintColor = UIColor.clear
-        
-        annotationView.canShowCallout = false
-        annotationView.subtitleVisibility = MKFeatureVisibility.hidden
-        annotationView.titleVisibility = MKFeatureVisibility.hidden
-        annotationView.image = UIImage(named: "serviceProviderIcon")
 
-        return annotationView
-    }
+    
+        //Set up custom design for map pin
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//
+//        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+//        annotationView.markerTintColor = UIColor.clear
+//        annotationView.glyphTintColor = UIColor.clear
+//
+//        annotationView.canShowCallout = false
+//        annotationView.subtitleVisibility = MKFeatureVisibility.hidden
+//        annotationView.titleVisibility = MKFeatureVisibility.hidden
+//        annotationView.image = UIImage(named: "serviceRequiredIcon")
+//
+//        return annotationView
+//    }
+    
+    
     
     //Tell customer they're here and change image
     @IBAction func hereButtonPressed(_ sender: Any) {
@@ -141,9 +150,42 @@ class WorkProgressViewController: UIViewController, MKMapViewDelegate {
     }
     
 
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation as? MKUserLocation != mapView.userLocation else {
+            return annotation as? MKAnnotationView
+            
+        }
+        
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
+        annotationView.markerTintColor = UIColor.clear
+        annotationView.glyphTintColor = UIColor.clear
+       
+        annotationView.canShowCallout = false
+        annotationView.subtitleVisibility = MKFeatureVisibility.hidden
+        annotationView.titleVisibility = MKFeatureVisibility.hidden
+        annotationView.image = UIImage(named: "serviceRequiredIcon")
+        
+        return annotationView
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        navigateTo(coords: view.annotation!.coordinate)
+        
+    }
+    
+    func navigateTo(coords: CLLocationCoordinate2D) {
+
+        let nav = DirectionsOpts.directionsAlertController(coordinate: coords, name: "Destination", title: "Navigate to Destination", message: "Any message") { com in
+            //completion
+        }
+        self.present(nav, animated: true, completion: nil)
+
+    }
+    
+    
+  
     
 
-    
-    
-    
+
 }

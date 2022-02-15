@@ -8,9 +8,12 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+import FirebaseFirestore
+
 
 class IntroViewController: UIViewController {
-    
+
     
     @IBOutlet weak var errorSigningIn: UILabel!
     
@@ -26,6 +29,8 @@ class IntroViewController: UIViewController {
     @IBOutlet weak var tryAgainLabel: UILabel!
     
     override func viewDidLoad() {
+        
+        
          logInButton.layer.cornerRadius = logInButton.frame.size.height / 5
         
          signUpOneButton.layer.cornerRadius = signUpOneButton.frame.size.height / 5
@@ -35,14 +40,28 @@ class IntroViewController: UIViewController {
 
         setUpElements()
         
-
-        //alert.addButton(withTitle: "Understood")
-        //alert.show(UIViewController, sender: Any?)
-        
-        print("intro loaded")
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        CheckLoggedIn()
+    }
+    
+    
+    
+    func CheckLoggedIn() {
+        if Auth.auth().currentUser != nil {
+            print("yes ")
+            self.openHome()
+        } else {
+            
+            print("not ")
+          // No user is signed in.
+          // ...
+        }
+        
+    }
 
     
     func setUpElements() {
@@ -83,10 +102,7 @@ class IntroViewController: UIViewController {
                 //self.present(alert, animated: true, completion: nil)
                 
             } else {
-                let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
-                
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
+                self.openHome()
                 
                 
             }
@@ -95,6 +111,13 @@ class IntroViewController: UIViewController {
         
     }
     
+    func openHome() {
+        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        
+        self.view.window?.rootViewController = homeViewController
+        self.view.window?.makeKeyAndVisible()
+        
+    }
     
     
    

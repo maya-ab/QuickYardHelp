@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C421DD527BB2E2900BEF34D /* DirectionsOpts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C421DD427BB2E2900BEF34D /* DirectionsOpts.swift */; };
 		E21C57D826DDA0B400BD2665 /* reportAndBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C57D726DDA0B400BD2665 /* reportAndBlockViewController.swift */; };
 		E250CECD266F03A400F514F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E250CECC266F03A400F514F5 /* GoogleService-Info.plist */; };
 		E250CECF2670454500F514F5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E250CECE2670454500F514F5 /* Utilities.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		3F059FBAAB1839FE77B972C3 /* Pods-QuickYardHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickYardHelp.release.xcconfig"; path = "Target Support Files/Pods-QuickYardHelp/Pods-QuickYardHelp.release.xcconfig"; sourceTree = "<group>"; };
 		578DFD84CFCCC9AE06A7FD8B /* Pods-QuickYardHelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickYardHelp.debug.xcconfig"; path = "Target Support Files/Pods-QuickYardHelp/Pods-QuickYardHelp.debug.xcconfig"; sourceTree = "<group>"; };
+		6C421DD427BB2E2900BEF34D /* DirectionsOpts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsOpts.swift; sourceTree = "<group>"; };
 		E212FFA52761403A0089A186 /* QuickYardHelpDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickYardHelpDebug.entitlements; sourceTree = "<group>"; };
 		E21C57D726DDA0B400BD2665 /* reportAndBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reportAndBlockViewController.swift; sourceTree = "<group>"; };
 		E250CECC266F03A400F514F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				E250CECE2670454500F514F5 /* Utilities.swift */,
 				E2DE7ACC267171C300AED53D /* Constants.swift */,
 				E2DE7ACE2672A3E400AED53D /* LocationManager.swift */,
+				6C421DD427BB2E2900BEF34D /* DirectionsOpts.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F9EA4D26A780DC00963D69 /* serviceProviderArrivingMap.swift in Sources */,
+				6C421DD527BB2E2900BEF34D /* DirectionsOpts.swift in Sources */,
 				E2798BB5266AF586002CA446 /* ViewController.swift in Sources */,
 				E2DE7ACD267171C300AED53D /* Constants.swift in Sources */,
 				E2798BCB266AF8A0002CA446 /* SignUpViewController.swift in Sources */,
